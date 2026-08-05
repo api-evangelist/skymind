@@ -1,0 +1,48 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/skymind-pathmind-openapi-original.yml
+notes: >-
+  Derived from the published OpenAPI only. No compliance program, certification page or
+  trust centre was found on any reachable Pathmind host (probe-security-programs.py
+  returned vdp=none trust=none), so no Compliance pointer is emitted.
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'openapi/skymind-pathmind-openapi-original.yml declares openapi: 3.0.3, with paths and components'
+- id: api-key-auth
+  conforms: true
+  evidence: securitySchemes.api_key is type apiKey, in header, name X-PM-API-TOKEN
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in any spec; no OAuth documentation found
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a bespoke {timestamp,error,status,path} envelope, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    No first-party security.txt. The only 200 was help.pathmind.com/.well-known/security.txt,
+    which is Intercom's document (canonical app.intercom.com) and is not credited to Pathmind.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no Sunset or Deprecation headers declared in the spec or documented
+- id: idempotency
+  conforms: false
+  evidence: no Idempotency-Key parameter or header in the spec or docs
+- id: pagination
+  conforms: false
+  evidence: getProjects returns an unbounded ArrayOfProjects with no page/cursor parameters
+- id: rate-limit-headers
+  conforms: false
+  evidence: no rate-limit headers declared or documented
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface published
+- id: multipart-upload
+  conforms: true
+  evidence: uploadAlModel accepts multipart/form-data with a binary `file` part
+- id: rfc7231-location-header
+  conforms: true
+  evidence: uploadAlModel 201 declares a `location` response header pointing at the created experiment

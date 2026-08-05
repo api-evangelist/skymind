@@ -1,18 +1,68 @@
 aid: skymind
 name: Pathmind
-description: 'Pathmind is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Pathmind (formerly Skymind, the company behind the Deeplearning4j open-source deep
+  learning library) was a San Francisco reinforcement-learning company that let simulation
+  engineers train RL policies against AnyLogic and Python simulations without writing
+  machine-learning code. The product had three parts: the Pathmind Helper, an AnyLogic
+  palette item that exposed a simulation's observations, actions and reward function to
+  Pathmind; a cloud training service where uploaded models became experiments; and
+  Pathmind Serving, a FastAPI/Ray policy server that turned a trained policy into a REST
+  prediction endpoint. A small first-party REST API (project listing and AnyLogic model
+  upload, authenticated with an X-PM-API-TOKEN header) and a first-party Python simulation
+  API on PyPI were published. Pathmind ceased operating in November 2021 — its own final
+  release, pathmind-webapp v1.8.6, is titled "Final release - disabling sign-ups and
+  upgrades" — and the app, API and marketing hosts no longer serve. The artifacts in this
+  repository are the surviving public first-party surface, harvested from the company's own
+  GitHub organization and PyPI.
 url: https://raw.githubusercontent.com/api-evangelist/skymind/refs/heads/main/apis.yml
+image: https://raw.githubusercontent.com/PathmindAI/pathmind-webapp/dev/pathmind-webapp/src/main/resources/static/frontend/images/pathmind-logo-100x100.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Machine Learning
+- Reinforcement Learning
+- Simulation
+- Optimization
+- Supply Chain
+- Manufacturing
+- Defunct
+apis:
+- name: Pathmind API
+  description: >-
+    The Pathmind web application's public REST API. Two operations: list the authenticated
+    user's projects, and upload an AnyLogic simulation model (optionally into an existing
+    project) to create a Pathmind experiment. Authentication is an API token supplied in the
+    X-PM-API-TOKEN header. The OpenAPI 3.0.3 definition is published first-party in the
+    pathmind-webapp repository. The production host api.pathmind.com no longer accepts
+    connections — see lifecycle/skymind-lifecycle.yml.
+  humanURL: https://github.com/PathmindAI/pathmind-webapp/tree/dev/pathmind-api
+  baseURL: https://api.pathmind.com
+  tags:
+  - Reinforcement Learning
+  - Simulation
+  - Projects
+  - Model Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/skymind-pathmind-openapi-original.yml
+  - type: Authentication
+    url: authentication/skymind-authentication.yml
+  - type: ErrorCatalog
+    url: errors/skymind-problem-types.yml
+  - type: Conventions
+    url: conventions/skymind-conventions.yml
+  - type: DataModel
+    url: data-model/skymind-data-model.yml
+  - type: Overlay
+    url: overlays/skymind-pathmind-overlay.yaml
+  - type: AgentSkill
+    url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +70,55 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://pathmind.com/
+- type: GitHubOrganization
+  url: https://github.com/PathmindAI
+- type: SourceCode
+  url: https://github.com/PathmindAI/pathmind-webapp
+- type: Documentation
+  url: https://github.com/PathmindAI/pathmind-api/blob/main/README.md
+- type: APIReference
+  url: https://github.com/PathmindAI/pathmind-webapp/blob/dev/pathmind-api/src/main/resources/openapi.yaml
+- type: Packages
+  url: packages/skymind-packages.yml
+- type: SDKs
+  url: packages/skymind-packages.yml
+- type: WellKnown
+  url: well-known/skymind-well-known.yml
+- type: LLMsTxt
+  url: llms/skymind-llms.txt
+- type: Conformance
+  url: conformance/skymind-conformance.yml
+- type: Lifecycle
+  url: lifecycle/skymind-lifecycle.yml
+- type: ChangeLog
+  url: changelog/skymind-changelog.yml
+- type: DomainSecurity
+  url: security/skymind-domain-security.yml
+- type: Investors
   url: https://forgeglobal.com/skymind_stock/
+x-enrichment:
+  date: '2026-08-05'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: null
+  detail: >-
+    Every pathmind.com host is behind a Cloudflare challenge or refuses connections — the
+    company shut down in November 2021 — but contract discovery found the real first-party
+    OpenAPI 3.0.3 still published in the company's own GitHub organization, at
+    pathmind-webapp/pathmind-api/src/main/resources/openapi.yaml, plus the official
+    `pathmind` package on PyPI. No A2A agent card, MCP server, AsyncAPI or first-party
+    security.txt exists on any host.
+  evidence:
+  - url: https://raw.githubusercontent.com/PathmindAI/pathmind-webapp/dev/pathmind-api/src/main/resources/openapi.yaml
+    status: 200
+  - url: https://pypi.org/pypi/pathmind/json
+    status: 200
+  - url: https://api.pathmind.com/openapi.json
+    status: 0
+  - url: https://pathmind.com/
+    status: 403
+  checked: '2026-08-05'

@@ -1,0 +1,62 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/skymind-pathmind-openapi-original.yml
+notes: >-
+  Entity graph derived from components.schemas and from the operation signatures. The
+  published spec is small — two operations — so the model is correspondingly small.
+  Experiment and Model are real Pathmind domain entities but are not defined as schemas
+  in the spec; they are inferred only from the uploadAlModel request body and its
+  location response header, and are marked as such.
+entities:
+- name: Project
+  schema: components.schemas.Project
+  id: {field: id, type: integer}
+  fields:
+  - {name: id, type: integer}
+  - {name: name, type: string}
+  - {name: is_archived, type: boolean}
+  - {name: date_created, type: string}
+  - {name: date_last_activity, type: string}
+  operations: [getProjects]
+- name: Error
+  schema: components.schemas.Error
+  kind: envelope
+  fields:
+  - {name: timestamp, type: string}
+  - {name: error, type: string}
+  - {name: status, type: integer}
+  - {name: path, type: string}
+- name: Model
+  schema: null
+  modelled_in_spec: false
+  kind: inferred
+  detail: >-
+    The AnyLogic simulation model uploaded by uploadAlModel as a binary multipart `file`
+    part. No response schema describes it.
+  operations: [uploadAlModel]
+- name: Experiment
+  schema: null
+  modelled_in_spec: false
+  kind: inferred
+  id: {field: experiment, type: integer, note: appears only as a query parameter in the location header URL}
+  detail: >-
+    Created as a side effect of uploadAlModel. The 201 `location` header points at the
+    web app's editGoals view for the new experiment.
+collections:
+- name: ArrayOfProjects
+  schema: components.schemas.ArrayOfProjects
+  items: Project
+relationships:
+- {from: Project, to: Model, kind: has_many, via: projectId, evidence: uploadAlModel accepts an optional projectId to attach the upload to a project}
+- {from: Model, to: Experiment, kind: has_one, via: location-header, evidence: uploadAlModel 201 location header carries experiment=<id>}
+- from: Project
+  to: Experiment
+  kind: has_many
+  via: projectId
+  confidence: medium
+  evidence: 'inferred from the editGoals/{projectId}?experiment={id} URL shape in the published example'
+coverage:
+  schemas_in_spec: 3
+  entities_modelled: 2
+  entities_inferred: 2
+  relationships: 3

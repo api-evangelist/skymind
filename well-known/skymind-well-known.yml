@@ -1,0 +1,78 @@
+generated: '2026-08-05'
+method: probed
+source: live probe of every Pathmind host
+notes: >-
+  Every /.well-known/ path was probed on all five known Pathmind hosts. The only
+  200 is help.pathmind.com/.well-known/security.txt, and that document is INTERCOM'S,
+  not Pathmind's — the help centre is hosted on Intercom and the file is canonical at
+  app.intercom.com. It is recorded here for completeness and explicitly NOT credited
+  to Pathmind: no SecurityTxt, Security or VulnerabilityDisclosure pointer is wired
+  from it. A control probe of /.well-known/bogus-control-path-xyz.txt on the same host
+  returned 404, confirming the 200 is a real file and not a catch-all.
+hosts:
+- host: https://pathmind.com
+  reachable: false
+  note: >-
+    Cloudflare bot challenge (HTTP 403 "Just a moment...") on every path. The
+    2026-07-18 Wayback capture of the origin behind it is a WordPress.com error page —
+    "Active domain connection for this domain not found".
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+- host: https://api.pathmind.com
+  reachable: false
+  note: >-
+    DNS resolves (CNAME api.devpathmind.com -> 107.172.38.44) but no TLS listener;
+    connection refused. This is the servers[0] host in the published OpenAPI.
+  documents:
+  - {path: /.well-known/security.txt, status: 0, error: connection-refused}
+  - {path: /.well-known/openid-configuration, status: 0, error: connection-refused}
+  - {path: /.well-known/oauth-authorization-server, status: 0, error: connection-refused}
+  - {path: /.well-known/api-catalog, status: 0, error: connection-refused}
+  - {path: /.well-known/ai-plugin.json, status: 0, error: connection-refused}
+  - {path: /.well-known/agent-card.json, status: 0, error: connection-refused}
+  - {path: /.well-known/agent.json, status: 0, error: connection-refused}
+- host: https://app.pathmind.com
+  reachable: false
+  note: DNS resolves to the same dead origin; connection refused on 443.
+  documents:
+  - {path: /.well-known/security.txt, status: 0, error: connection-refused}
+  - {path: /.well-known/agent-card.json, status: 0, error: connection-refused}
+  - {path: /.well-known/agent.json, status: 0, error: connection-refused}
+- host: https://help.pathmind.com
+  reachable: partial
+  note: Intercom-hosted help centre; root returns a Cloudflare challenge, /.well-known/ is served.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    file: skymind-help-intercom-security.txt
+    first_party: false
+    vendor: Intercom
+    canonical: https://app.intercom.com/.well-known/security.txt
+    credited_to_pathmind: false
+  - {path: /llms.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/bogus-control-path-xyz.txt, status: 404, purpose: control}
+- host: https://wiki.pathmind.com
+  reachable: false
+  note: Cloudflare bot challenge on the root; /.well-known/ paths return 404.
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+summary:
+  first_party_documents: 0
+  third_party_documents: 1
+  agent_card_found: false

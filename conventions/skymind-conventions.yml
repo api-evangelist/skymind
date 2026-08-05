@@ -1,0 +1,65 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/skymind-pathmind-openapi-original.yml
+notes: >-
+  Cross-cutting request/response semantics for the Pathmind API, derived from the
+  published OpenAPI plus the first-party Python client README. Pathmind published no
+  conventions or API-design guide. Idempotency is NOT supported — no Idempotency-Key
+  header or parameter appears anywhere in the spec or the client — so no Idempotency
+  pointer is wired from this document.
+authentication:
+  style: api-key-header
+  header: X-PM-API-TOKEN
+  scheme_name: api_key
+  applied: 'per-operation (both operations declare security: [{api_key: []}])'
+  token_source: >-
+    Access token from the Pathmind account page. The Python client reads it from the
+    PATHMIND_TOKEN environment variable.
+  see: authentication/skymind-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key. uploadAlModel is a non-idempotent POST — a repeated upload
+    creates another experiment rather than returning the first result.
+pagination:
+  supported: false
+  note: getProjects returns the full ArrayOfProjects with no limit, offset, page or cursor parameter.
+filtering_and_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  request_id_header: null
+  note: No correlation or request-id header is declared or documented.
+versioning:
+  in_path: false
+  in_header: false
+  spec_version: '1.0.0'
+  see: lifecycle/skymind-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  shape: '{timestamp, error, status, path}'
+  rfc9457: false
+  see: errors/skymind-problem-types.yml
+rate_limiting:
+  documented: false
+  headers: []
+content_types:
+  request:
+  - multipart/form-data (uploadAlModel)
+  response:
+  - application/json
+response_conventions:
+- convention: created-resource-location
+  detail: >-
+    uploadAlModel returns 201 with a `location` response header carrying a web-app URL for
+    the created experiment, e.g. https://app.pathmind.com//editGoals/35323?experiment=33093
+    (the doubled slash is verbatim from the published example).
+- convention: snake_case-fields
+  detail: Project fields use snake_case (is_archived, date_created, date_last_activity) while ids are plain integers.
+identifier_scheme:
+  style: integer
+  entities:
+  - {entity: Project, id: integer}
+  - {entity: Experiment, id: integer, note: surfaced only through the location header, not modelled in the spec}

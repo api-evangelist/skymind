@@ -1,0 +1,19 @@
+generated: '2026-08-05'
+method: generated
+source: openapi/skymind-pathmind-openapi-original.yml
+notes: >-
+  One skill covering the whole published Pathmind API surface — the spec has exactly two
+  operations and they form a single flow. Every operationId referenced was verified against
+  the harvested spec. Marked historical: the base host no longer accepts connections.
+skills:
+- file: skymind-upload-anylogic-model.md
+  name: Upload an AnyLogic model to Pathmind
+  description: >-
+    Authenticate with an X-PM-API-TOKEN, list the account's projects, and upload an
+    AnyLogic simulation model to create a reinforcement-learning experiment.
+  api: openapi/skymind-pathmind-openapi-original.yml
+  operations: [getProjects, uploadAlModel]
+  status: historical
+coverage:
+  operations_in_spec: 2
+  operations_covered: 2

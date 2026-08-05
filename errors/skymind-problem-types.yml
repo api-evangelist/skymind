@@ -1,0 +1,51 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/skymind-pathmind-openapi-original.yml
+format: custom
+notes: >-
+  Pathmind does not use RFC 9457 application/problem+json. Both published operations
+  return a bespoke JSON error envelope on 401 and 403, defined as components.schemas.Error
+  in the OpenAPI. The spec publishes exactly one worked example, on the 401 path. No
+  4xx/5xx responses beyond 401/403 are declared, and no error-code reference page was
+  found on any reachable Pathmind host.
+envelope:
+  schema: components.schemas.Error
+  media_type: application/json
+  fields:
+  - {name: timestamp, type: string, note: ISO-8601 with offset}
+  - {name: error, type: string, note: human-readable message}
+  - {name: status, type: integer, note: repeats the HTTP status code}
+  - {name: path, type: string, note: the request path that failed}
+  example:
+    timestamp: '2021-09-09T15:12:16.380365+02:00'
+    error: no pathmind api user for api key
+    status: 401
+    path: /al/upload
+problems:
+- status: 401
+  title: Unauthorized
+  meaning: >-
+    The X-PM-API-TOKEN header is missing, malformed, or does not map to a Pathmind API
+    user. The published example message is "no pathmind api user for api key".
+  remediation: >-
+    Supply a valid Pathmind access token from the account page in the X-PM-API-TOKEN
+    request header.
+  schema: components.schemas.Error
+  source_operations:
+  - openapi/skymind-pathmind-openapi-original.yml#getProjects
+  - openapi/skymind-pathmind-openapi-original.yml#uploadAlModel
+- status: 403
+  title: Forbidden
+  meaning: >-
+    The token authenticated but is not permitted to perform the operation — for example
+    uploading into a projectId that belongs to another account.
+  remediation: Use a token whose account owns the target project, or omit projectId to create a new one.
+  schema: components.schemas.Error
+  source_operations:
+  - openapi/skymind-pathmind-openapi-original.yml#getProjects
+  - openapi/skymind-pathmind-openapi-original.yml#uploadAlModel
+coverage:
+  operations_in_spec: 2
+  operations_with_4xx: 2
+  distinct_statuses: [401, 403]
+  rfc9457: false

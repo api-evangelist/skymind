@@ -1,0 +1,75 @@
+generated: '2026-08-05'
+method: searched
+source: https://github.com/PathmindAI/pathmind-webapp/releases
+notes: >-
+  Pathmind never published a dated changelog page on its own site. It did publish tagged,
+  dated, human-written GitHub releases for the web application (30 releases) and for the
+  Python simulation API (3 releases); those are the changelog of record. Capture is the
+  most recent window; the series ends at the shutdown release.
+scheme: semver
+current_version: v1.8.6
+current_date: '2021-11-17'
+closed: true
+entries:
+- version: v1.8.6
+  date: '2021-11-17'
+  title: Final release - disabling sign-ups and upgrades
+  breaking: true
+  highlights:
+  - Sign-ups and plan upgrades disabled; the service wound down.
+- version: v1.8.5
+  date: '2021-10-29'
+  title: Weekly update for prod - Updates to NativeRL 1.8.1
+  breaking: false
+  highlights:
+  - NativeRL bumped to v1.8.1.
+- version: v1.8.4
+  date: '2021-10-29'
+  title: Hotfix - update the suggested reward function for the AGV demo
+  breaking: false
+- version: v1.8.3
+  date: '2021-10-29'
+  title: Hotfix - fix bug with reward term conversion
+  breaking: false
+- version: v1.8.2
+  date: '2021-10-27'
+  title: 'Hotfix - support `reward = ` reward functions'
+  breaking: false
+- version: v1.8.1
+  date: '2021-10-27'
+  title: Hotfix - stop copying multi-agent files on S3
+  breaking: false
+- version: v1.8.0
+  date: '2021-10-14'
+  title: Reward terms + auto-balancing
+  breaking: false
+  highlights:
+  - Reward terms released as a beta feature.
+- version: v1.7.3
+  date: '2021-10-06'
+  title: Hotfix - add support for AnyLogic 8.7.7
+  breaking: false
+- version: v1.7.2
+  date: '2021-10-01'
+  title: Hotfix - fix redirect for shared experiments
+  breaking: false
+- version: v1.7.1
+  date: '2021-09-24'
+  title: Weekly update for prod
+  breaking: false
+  highlights:
+  - Better error messages for shared experiments; more UI moved to LitElement.
+- version: v1.7.0
+  date: '2021-09-15'
+  title: Simulation Parameters
+  breaking: false
+  highlights:
+  - Simulation parameters shipped as a paid feature.
+  - '"Onboarding service" button replaced with "Upgrade to Pro".'
+companion_series:
+- name: pathmind (Python simulation API)
+  source: https://github.com/PathmindAI/pathmind-api/releases
+  entries:
+  - {version: v0.4, date: '2021-11-04', highlights: [Support for OpenAI Gym environments]}
+  - {version: v0.3, date: '2021-10-26', highlights: [Better policy-server validation]}
+  - {version: '0.2', date: '2021-10-26', highlights: [Fix get_action payload, Add train and evaluate helpers]}

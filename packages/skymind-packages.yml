@@ -1,0 +1,53 @@
+generated: '2026-08-05'
+method: searched
+source: https://pypi.org/pypi/pathmind/json
+notes: >-
+  Registry sweep across PyPI, npm, Maven Central, RubyGems, NuGet, crates.io and
+  pkg.go.dev. Only PyPI carries a first-party Pathmind client library. Maven Central
+  returned 0 results for "pathmind" (nativerl and pathmind-webapp were built with
+  Maven but never published to Central); npm search returned 0 results.
+packages:
+- language: python
+  registry: pypi
+  name: pathmind
+  version: '0.4'
+  released: '2021-11-04'
+  url: https://pypi.org/project/pathmind/
+  source: https://github.com/PathmindAI/pathmind-api
+  install: pip install pathmind
+  license: MIT
+  official: true
+  description: >-
+    Pathmind's Python simulation API. Implement the `Simulation` interface, then
+    call `.train()` to train a reinforcement-learning policy on Pathmind's cloud,
+    and `Policy` to run inference against a trained policy server.
+  x-evidence:
+    fetched: '2026-08-05'
+    url: https://pypi.org/pypi/pathmind/json
+    http_status: 200
+registries_checked:
+- registry: pypi
+  query: pathmind
+  result: 1 first-party package (pathmind); pathmind-api and nativerl are 404
+- registry: npm
+  query: pathmind
+  result: 0 results
+- registry: maven-central
+  query: pathmind
+  result: 0 results
+- registry: rubygems
+  query: pathmind
+  result: not published
+- registry: nuget
+  query: pathmind
+  result: not published
+- registry: crates.io
+  query: pathmind
+  result: not published
+- registry: pkg.go.dev
+  query: pathmind
+  result: not published
+x-status: >-
+  The package is still installable from PyPI, but the Pathmind cloud service it
+  targets (api.pathmind.com / app.pathmind.com) no longer resolves to a live
+  origin. See lifecycle/skymind-lifecycle.yml.

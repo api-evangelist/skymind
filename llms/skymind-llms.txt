@@ -1,0 +1,72 @@
+# Pathmind
+
+> Pathmind (formerly Skymind, the company behind the Deeplearning4j deep-learning library)
+> was a San Francisco reinforcement-learning company that let simulation engineers train RL
+> policies against AnyLogic and Python simulations without writing machine-learning code.
+> Pathmind ceased operating in November 2021; its own final release is titled "Final release
+> - disabling sign-ups and upgrades". The app, API and marketing hosts no longer serve. This
+> file is an API Evangelist profile of the surviving public first-party surface.
+
+Generated: 2026-08-05
+Method: generated (from apis.yml and the artifacts in this repository)
+Source: https://raw.githubusercontent.com/api-evangelist/skymind/refs/heads/main/apis.yml
+
+## Status
+
+- Operational status: defunct as of 2021-11-17
+- https://api.pathmind.com — connection refused (probed 2026-08-05)
+- https://app.pathmind.com — connection refused (probed 2026-08-05)
+- https://pathmind.com/ — HTTP 403 Cloudflare challenge; origin is a WordPress.com
+  "Active domain connection for this domain not found" page in the 2026-07-18 archive
+- Surviving first-party surface: the GitHub organization and one PyPI package
+
+## APIs
+
+- [Pathmind API](https://github.com/PathmindAI/pathmind-webapp/tree/dev/pathmind-api):
+  Two operations — list the authenticated user's projects (getProjects) and upload an
+  AnyLogic simulation model to create an experiment (uploadAlModel). API-token auth via
+  the X-PM-API-TOKEN header. Base URL https://api.pathmind.com (unreachable).
+
+## Specs
+
+- [OpenAPI 3.0.3](https://github.com/PathmindAI/pathmind-webapp/blob/dev/pathmind-api/src/main/resources/openapi.yaml):
+  first-party definition, published in the pathmind-webapp repository
+- Local copy: openapi/skymind-pathmind-openapi-original.yml
+- Overlay of API Evangelist enhancements: overlays/skymind-pathmind-overlay.yaml
+
+## Artifacts
+
+- Authentication profile: authentication/skymind-authentication.yml
+- API conventions: conventions/skymind-conventions.yml
+- Error catalog: errors/skymind-problem-types.yml
+- Data model: data-model/skymind-data-model.yml
+- Conformance: conformance/skymind-conformance.yml
+- Lifecycle: lifecycle/skymind-lifecycle.yml
+- Changelog: changelog/skymind-changelog.yml
+- Packages / SDKs: packages/skymind-packages.yml
+- Well-known probe index: well-known/skymind-well-known.yml
+- Domain security probe: security/skymind-domain-security.yml
+- Agent skills: skills/_index.yml
+
+## SDKs
+
+- [pathmind on PyPI](https://pypi.org/project/pathmind/) — first-party Python simulation
+  API, v0.4 (2021-11-04), MIT. `pip install pathmind`. Implement the Simulation interface,
+  then call .train() to train a policy on Pathmind's cloud.
+
+## Source code
+
+- [PathmindAI on GitHub](https://github.com/PathmindAI)
+- [pathmind-webapp](https://github.com/PathmindAI/pathmind-webapp) — the Pathmind web
+  application, including the pathmind-api module that publishes the OpenAPI
+- [pathmind-api](https://github.com/PathmindAI/pathmind-api) — the Python simulation API
+- [nativerl](https://github.com/PathmindAI/nativerl) — apply RL to AnyLogic or Python simulations
+- [policy-server](https://github.com/PathmindAI/policy-server) — FastAPI/Ray policy serving,
+  which generates its own OpenAPI at runtime from a per-model schema.yaml
+
+## Not published
+
+- No MCP server, no A2A agent card, no AsyncAPI, no webhooks, no gRPC/protobuf
+- No OAuth (API-key auth only), no scopes
+- No status page, no deprecation policy, no SLA, no first-party security.txt
+- No sandbox, no CLI, no embedded components, no Postman collection

@@ -1,0 +1,58 @@
+generated: '2026-08-05'
+method: searched
+source: https://github.com/PathmindAI/pathmind-webapp/releases
+notes: >-
+  Pathmind published no versioning policy, no deprecation policy, no SLA and no status
+  page. The lifecycle facts recorded here come from the company's own GitHub releases and
+  from live host probes. No StatusPage or Deprecation pointer is emitted because neither
+  exists.
+versioning:
+  scheme: none-in-path
+  api_version: '1.0.0'
+  note: >-
+    The OpenAPI declares info.version 1.0.0 and the server is the bare host
+    https://api.pathmind.com — paths (/projects, /al/upload) carry no version segment
+    and no version header is documented.
+  product_versioning: semver
+  product_current: v1.8.6
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+operational_status:
+  state: defunct
+  ceased: '2021-11-17'
+  evidence:
+  - source: https://github.com/PathmindAI/pathmind-webapp/releases/tag/v1.8.6
+    kind: first-party release note
+    detail: >-
+      Final tagged release of the Pathmind web application, published 2021-11-17 and
+      titled "Final release - disabling sign-ups and upgrades".
+  - source: https://api.pathmind.com
+    kind: live probe
+    http_status: 0
+    detail: DNS resolves (CNAME api.devpathmind.com) but TLS connection is refused.
+  - source: https://app.pathmind.com
+    kind: live probe
+    http_status: 0
+    detail: Connection refused on 443; the sign-up and experiment console is gone.
+  - source: https://pathmind.com/
+    kind: live probe
+    http_status: 403
+    detail: >-
+      Cloudflare bot challenge. The 2026-07-18 Internet Archive capture of the origin
+      behind it is a WordPress.com error page — "Active domain connection for this
+      domain not found" — so the marketing site is no longer published either.
+  surviving_surface:
+  - https://github.com/PathmindAI
+  - https://pypi.org/project/pathmind/
+last_activity:
+  pathmind-webapp: '2024-05-15'
+  nativerl: '2022-09-16'
+  policy-server: '2022-03-03'
+  pathmind-api: '2021-11-13'
+  pypi_pathmind: '2021-11-04'
