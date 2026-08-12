@@ -33,24 +33,16 @@ tags:
 - Manufacturing
 - Defunct
 apis:
-- name: Pathmind API
-  description: >-
-    The Pathmind web application's public REST API. Two operations: list the authenticated
-    user's projects, and upload an AnyLogic simulation model (optionally into an existing
-    project) to create a Pathmind experiment. Authentication is an API token supplied in the
-    X-PM-API-TOKEN header. The OpenAPI 3.0.3 definition is published first-party in the
-    pathmind-webapp repository. The production host api.pathmind.com no longer accepts
-    connections — see lifecycle/skymind-lifecycle.yml.
+- aid: skymind:skymind-model-upload-api
+  name: Pathmind Model Upload API
+  description: The Model Upload API from Pathmind — 1 operation(s) for model upload.
   humanURL: https://github.com/PathmindAI/pathmind-webapp/tree/dev/pathmind-api
   baseURL: https://api.pathmind.com
   tags:
-  - Reinforcement Learning
-  - Simulation
-  - Projects
   - Model Upload
   properties:
   - type: OpenAPI
-    url: openapi/skymind-pathmind-openapi-original.yml
+    url: openapi/skymind-model-upload-api-openapi.yml
   - type: Authentication
     url: authentication/skymind-authentication.yml
   - type: ErrorCatalog
@@ -59,16 +51,37 @@ apis:
     url: conventions/skymind-conventions.yml
   - type: DataModel
     url: data-model/skymind-data-model.yml
-  - type: Overlay
-    url: overlays/skymind-pathmind-overlay.yaml
-  - type: AgentSkill
-    url: skills/_index.yml
+- aid: skymind:skymind-projects-api
+  name: Pathmind Projects API
+  description: The Projects API from Pathmind — 1 operation(s) for projects.
+  humanURL: https://github.com/PathmindAI/pathmind-webapp/tree/dev/pathmind-api
+  baseURL: https://api.pathmind.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/skymind-projects-api-openapi.yml
+  - type: Authentication
+    url: authentication/skymind-authentication.yml
+  - type: ErrorCatalog
+    url: errors/skymind-problem-types.yml
+  - type: Conventions
+    url: conventions/skymind-conventions.yml
+  - type: DataModel
+    url: data-model/skymind-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgentSkill
+  url: skills/skymind-upload-anylogic-model.md
+- type: Overlay
+  url: overlays/skymind-pathmind-overlay.yaml
+- type: License
+  name: Apache-2.0
+  url: https://github.com/PathmindAI/pathmind-webapp/blob/dev/LICENSE
 - type: Website
   url: https://pathmind.com/
 - type: GitHubOrganization
