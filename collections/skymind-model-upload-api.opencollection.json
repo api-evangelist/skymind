@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pathmind Model Upload API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload an AnyLogic simulation model with an optional project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pathmind.com/al/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "projectId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-PM-API-TOKEN",
+              "value": "{{X-PM-API-TOKEN}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload an AnyLogic simulation model with an optional project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

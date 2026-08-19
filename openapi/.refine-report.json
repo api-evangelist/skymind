@@ -1,0 +1,20 @@
+{
+  "provider": "skymind",
+  "sources": [
+    "skymind-model-upload-api-openapi.yml",
+    "skymind-projects-api-openapi.yml"
+  ],
+  "outputs": [
+    "skymind-model-upload-api-openapi.yml",
+    "skymind-projects-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "skymind-model-upload-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "skymind-projects-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

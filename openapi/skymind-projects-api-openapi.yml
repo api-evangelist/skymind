@@ -1,0 +1,87 @@
+openapi: 3.2.0
+info:
+  description: ''
+  version: 1.0.0
+  title: Pathmind Projects API
+  contact:
+    email: slin@pathmind.com
+servers:
+- description: Pathmind API
+  url: https://api.pathmind.com
+tags:
+- name: Projects
+  description: ''
+  externalDocs:
+    description: ''
+    url: ''
+paths:
+  /projects:
+    get:
+      tags:
+      - Projects
+      summary: Gets the list of the user's projects
+      operationId: getProjects
+      responses:
+        '200':
+          description: List of available projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfProjects'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        timestamp:
+          type: string
+        error:
+          type: string
+        status:
+          type: integer
+        path:
+          type: string
+      example:
+        timestamp: '2021-09-09T15:12:16.380365+02:00'
+        error: no pathmind api user for api key
+        status: 401
+        path: /al/upload
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        is_archived:
+          type: boolean
+        date_created:
+          type: string
+        date_last_activity:
+          type: string
+    ArrayOfProjects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: X-PM-API-TOKEN
+      in: header
+externalDocs:
+  description: Find out more about Pathmind
+  url: https://help.pathmind.com/
