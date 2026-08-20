@@ -25,6 +25,16 @@ modified: '2026-08-05'
 tags:
 - Company
 - Artificial Intelligence
+- Machine-Learning
+- Reinforcement Learning
+- Simulation
+- Optimization
+- Supply Chain
+- Manufacturing
+- Defunct
+tags_raw:
+- Company
+- Artificial Intelligence
 - Machine Learning
 - Reinforcement Learning
 - Simulation
@@ -57,6 +67,8 @@ apis:
   humanURL: https://github.com/PathmindAI/pathmind-webapp/tree/dev/pathmind-api
   baseURL: https://api.pathmind.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
