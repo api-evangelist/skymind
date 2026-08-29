@@ -16,6 +16,19 @@ description: >-
   repository are the surviving public first-party surface, harvested from the company's own
   GitHub organization and PyPI.
 url: https://raw.githubusercontent.com/api-evangelist/skymind/refs/heads/main/apis.yml
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: true
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 image: https://raw.githubusercontent.com/PathmindAI/pathmind-webapp/dev/pathmind-webapp/src/main/resources/static/frontend/images/pathmind-logo-100x100.png
 x-type: company
 x-source: harvest:secondary-market
@@ -87,6 +100,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: IssueTracker
+  url: https://github.com/PathmindAI/pathmind-webapp/issues
+- type: Releases
+  url: https://github.com/PathmindAI/pathmind-webapp/releases
 - type: AgentSkill
   url: skills/skymind-upload-anylogic-model.md
 - type: Overlay
