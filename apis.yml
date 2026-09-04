@@ -29,6 +29,20 @@ deliveryModel:
   - openapi
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  probe_state: covered
+  source:
+  - authentication
+  - security
+  generated: '2026-09-03'
+  method: derived
 image: https://raw.githubusercontent.com/PathmindAI/pathmind-webapp/dev/pathmind-webapp/src/main/resources/static/frontend/images/pathmind-logo-100x100.png
 x-type: company
 x-source: harvest:secondary-market
