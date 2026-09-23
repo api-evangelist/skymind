@@ -44,6 +44,10 @@ paths:
       - api_key: []
 components:
   schemas:
+    ArrayOfProjects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
     Error:
       type: object
       properties:
@@ -73,10 +77,6 @@ components:
           type: string
         date_last_activity:
           type: string
-    ArrayOfProjects:
-      type: array
-      items:
-        $ref: '#/components/schemas/Project'
   securitySchemes:
     api_key:
       type: apiKey
