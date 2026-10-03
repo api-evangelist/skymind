@@ -60,10 +60,6 @@ components:
         error: no pathmind api user for api key
         status: 401
         path: /al/upload
-    ArrayOfProjects:
-      type: array
-      items:
-        $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -77,6 +73,10 @@ components:
           type: string
         date_last_activity:
           type: string
+    ArrayOfProjects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
   securitySchemes:
     api_key:
       type: apiKey
