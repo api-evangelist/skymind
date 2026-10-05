@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/PathmindAI/pathmind-webapp/refs/heads/dev/pathmind-api/src/main/resources/openapi.yaml",
+ "requested_url": "https://github.com/PathmindAI/pathmind-webapp/blob/dev/pathmind-api/src/main/resources/openapi.yaml?raw=true",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 3463,
+ "sha256": "cefc48a6054776b16147a51f29809c84a78881d87cde3660ab1fd6950bfeefbf",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
